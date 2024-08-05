@@ -1,0 +1,143 @@
+.container {
+    background-color: #f9f5f2; /* Color de fondo claro */
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    max-width: 900px; /* Ancho máximo para centrar la tabla */
+    margin: 0 auto; /* Centramos el contenedor horizontalmente */
+  }
+  
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #d9b88c; /* Color de borde marrón claro */
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .table thead th {
+    background-color: #d49a6a; /* Color de fondo del encabezado en marrón naranja */
+    color: #fff; /* Texto blanco */
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f5e8d0; /* Color de fondo alternativo */
+  }
+  
+  .table th button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 8px;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    border: 1px solid #d9b88c; /* Color del borde del input */
+    border-radius: 4px; /* Bordes redondeados */
+    margin-bottom: 20px;
+    width: 100%; /* Ajusta el ancho del input */
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
+    font-size: 16px;
+  }
+  
+  input[type="text"]::placeholder {
+    color: #bfa99f; /* Color del texto del placeholder */
+  }
+  
+  .pagination {
+    display: flex; /* Asegura que los elementos se dispongan en una fila */
+    justify-content: center; /* Centrar la paginación horizontalmente */
+    margin-top: 20px;
+  }
+  
+  .pagination .page-item {
+    margin: 0 2px; /* Espacio entre los ítems de la paginación */
+  }
+  
+  .pagination .page-link {
+    padding: 10px 15px; /* Ajusta el padding para los enlaces de página */
+    border-radius: 4px; /* Bordes redondeados */
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #d49a6a; /* Color de fondo activo */
+    border-color: #d49a6a; /* Color del borde activo */
+    color: #fff; /* Texto blanco */
+  }
+  
+  .pagination .page-link {
+    color: #d49a6a; /* Color del texto del enlace de la página */
+    border: 1px solid #d9b88c; /* Color del borde del enlace */
+  }
+  
+  .pagination .page-link:hover {
+    background-color: #f5e8d0; /* Color de fondo al pasar el ratón */
+    border-color: #d49a6a; /* Color del borde al pasar el ratón */
+  }
+  
+  .pagination .page-item.disabled .page-link {
+    color: #bfa99f; /* Color de texto para elementos deshabilitados */
+    cursor: not-allowed; /* Cursor para elementos deshabilitados */
+  }
+  
+  /* Media Queries para Responsividad */
+  
+  /* Para pantallas de tamaño mediano (tablets) */
+  @media (max-width: 2000px) {
+    .container {
+      padding: 15px; /* Reducir el padding */
+    }
+  
+    .table th, .table td {
+      padding: 8px; /* Reducir el padding de las celdas */
+    }
+  
+    input[type="text"] {
+      font-size: 14px; /* Reducir el tamaño de fuente */
+    }
+  
+    .pagination .page-link {
+      padding: 8px 12px; /* Ajustar el padding de los enlaces de la paginación */
+    }
+  }
+  
+  /* Para pantallas pequeñas (smartphones) */
+  @media (max-width: 480px) {
+    .container {
+      padding: 10px; /* Reducir más el padding */
+    }
+  
+    .table {
+      font-size: 12px; /* Reducir el tamaño de fuente de la tabla */
+    }
+  
+    .table th, .table td {
+      padding: 5px; /* Reducir aún más el padding de las celdas */
+    }
+  
+    .table th button {
+      font-size: 14px; /* Reducir el tamaño de fuente de los botones */
+      margin-left: 4px; /* Reducir el margen de los botones */
+    }
+  
+    input[type="text"] {
+      font-size: 12px; /* Reducir aún más el tamaño de fuente */
+      padding: 8px; /* Reducir el padding de los inputs */
+    }
+  
+    .pagination .page-link {
+      padding: 5px 8px; /* Ajustar más el padding de los enlaces de la paginación */
+    }
+  
+    .pagination .page-item {
+      margin: 0 1px; /* Reducir el espacio entre ítems */
+    }
+  }
+  
