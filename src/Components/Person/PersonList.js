@@ -9,7 +9,8 @@ function PersonList() {
   const [jobCategoryOrder, setJobCategoryOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const personsPerPage = 15;
+  const [personsPerPage] = useState(15);
+  const [jobCategories, setJobCategories] = useState([]); // Estado para las categorías de trabajo
 
   useEffect(() => {
     const fetchPersons = async () => {
@@ -17,10 +18,21 @@ function PersonList() {
         const response = await axios.get('https://localhost:7019/api/v1/Person');
         setPersons(response.data.content);
       } catch (error) {
-        console.error("Error al obtener los datos:", error);
+        console.error("Error al obtener los datos de personas:", error);
       }
     };
+
+    const fetchJobCategories = async () => {
+      try {
+        const response = await axios.get('https://localhost:7019/api/v1/JobCategory');
+        setJobCategories(response.data.content); // Asumiendo que la respuesta tiene una propiedad `content`
+      } catch (error) {
+        console.error("Error al obtener los datos de categorías de trabajo:", error);
+      }
+    };
+
     fetchPersons();
+    fetchJobCategories();
   }, []);
 
   const filteredPersons = persons.filter(person => {
@@ -48,6 +60,8 @@ function PersonList() {
 
   return (
     <Container className="container">
+      {/* Filtros y tabla de personas */}
+      <h3 className="mt-4">Personas</h3>
       <Form.Control
         type="text"
         placeholder="Buscar por PersonId"
@@ -114,6 +128,29 @@ function PersonList() {
         ))}
         <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
       </Pagination>
+
+      {/* Nueva sección para mostrar categorías de trabajo */}
+      <h3 className="mt-4">Categorías de Trabajo</h3>
+      <Table className="table" striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Activo</th>
+            <th>Fecha de Creación</th>
+          </tr>
+        </thead>
+        <tbody>
+          {jobCategories.map(category => (
+            <tr key={category.id}>
+              <td>{category.id}</td>
+              <td>{category.description}</td>
+              <td>{category.active ? "Sí" : "No"}</td>
+              <td>{new Date(category.createdAt).toLocaleString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </Container>
   );
 }
