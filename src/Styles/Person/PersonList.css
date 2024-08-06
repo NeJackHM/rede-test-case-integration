@@ -1,143 +1,173 @@
 .container {
-    background-color: #f9f5f2; /* Color de fondo claro */
-    padding: 20px;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    max-width: 1200px; /* Ancho máximo para centrar la tabla */
-    margin: 0 auto; /* Centramos el contenedor horizontalmente */
+  background-color: #f9f5f2;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.table th, .table td {
+  border: 1px solid #d9b88c;
+  padding: 12px;
+  text-align: left;
+}
+
+.table thead th {
+  background-color: #d49a6a;
+  color: #fff;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f5e8d0;
+}
+
+.table th button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+  padding: 10px;
+  border: 1px solid #d9b88c;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="date"]::placeholder {
+  color: #bfa99f;
+}
+
+/* Estilo para campos de selección (combobox) */
+select {
+  background-color: #fff;
+}
+
+/* Botones */
+.button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  color: #fff;
+  background-color: #d49a6a;
+  border: 1px solid #d49a6a;
+}
+
+.button:hover {
+  background-color: #f5e8d0;
+  border-color: #d49a6a;
+  color: #d49a6a;
+}
+
+/* Paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .page-item {
+  margin: 0 2px;
+}
+
+.pagination .page-link {
+  padding: 10px 15px;
+  border-radius: 4px;
+  color: #d49a6a;
+  border: 1px solid #d9b88c;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #d49a6a;
+  border-color: #d49a6a;
+  color: #fff;
+}
+
+.pagination .page-link:hover {
+  background-color: #f5e8d0;
+  border-color: #d49a6a;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #bfa99f;
+  cursor: not-allowed;
+}
+
+/* Responsividad */
+@media (max-width: 2000px) {
+  .container {
+    padding: 15px;
   }
-  
-  .table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px 0;
-  }
-  
+
   .table th, .table td {
-    border: 1px solid #d9b88c; /* Color de borde marrón claro */
-    padding: 12px;
-    text-align: left;
+    padding: 8px;
   }
-  
-  .table thead th {
-    background-color: #d49a6a; /* Color de fondo del encabezado en marrón naranja */
-    color: #fff; /* Texto blanco */
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  select {
+    font-size: 14px;
   }
-  
-  .table tr:nth-child(even) {
-    background-color: #f5e8d0; /* Color de fondo alternativo */
+
+  .pagination .page-link {
+    padding: 8px 12px;
   }
-  
-  .table th button {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    margin-left: 8px;
-  }
-  
-  input[type="text"] {
+}
+
+@media (max-width: 480px) {
+  .container {
     padding: 10px;
-    border: 1px solid #d9b88c; /* Color del borde del input */
-    border-radius: 4px; /* Bordes redondeados */
-    margin-bottom: 20px;
-    width: 100%; /* Ajusta el ancho del input */
-    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
-    font-size: 16px;
   }
-  
-  input[type="text"]::placeholder {
-    color: #bfa99f; /* Color del texto del placeholder */
+
+  .table {
+    font-size: 12px;
   }
-  
-  .pagination {
-    display: flex; /* Asegura que los elementos se dispongan en una fila */
-    justify-content: center; /* Centrar la paginación horizontalmente */
-    margin-top: 20px;
+
+  .table th, .table td {
+    padding: 5px;
   }
-  
+
+  .table th button {
+    font-size: 14px;
+    margin-left: 4px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  select {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .pagination .page-link {
+    padding: 5px 8px;
+  }
+
   .pagination .page-item {
-    margin: 0 2px; /* Espacio entre los ítems de la paginación */
+    margin: 0 1px;
   }
-  
-  .pagination .page-link {
-    padding: 10px 15px; /* Ajusta el padding para los enlaces de página */
-    border-radius: 4px; /* Bordes redondeados */
-  }
-  
-  .pagination .page-item.active .page-link {
-    background-color: #d49a6a; /* Color de fondo activo */
-    border-color: #d49a6a; /* Color del borde activo */
-    color: #fff; /* Texto blanco */
-  }
-  
-  .pagination .page-link {
-    color: #d49a6a; /* Color del texto del enlace de la página */
-    border: 1px solid #d9b88c; /* Color del borde del enlace */
-  }
-  
-  .pagination .page-link:hover {
-    background-color: #f5e8d0; /* Color de fondo al pasar el ratón */
-    border-color: #d49a6a; /* Color del borde al pasar el ratón */
-  }
-  
-  .pagination .page-item.disabled .page-link {
-    color: #bfa99f; /* Color de texto para elementos deshabilitados */
-    cursor: not-allowed; /* Cursor para elementos deshabilitados */
-  }
-  
-  /* Media Queries para Responsividad */
-  
-  /* Para pantallas de tamaño mediano (tablets) */
-  @media (max-width: 2000px) {
-    .container {
-      padding: 15px; /* Reducir el padding */
-    }
-  
-    .table th, .table td {
-      padding: 8px; /* Reducir el padding de las celdas */
-    }
-  
-    input[type="text"] {
-      font-size: 14px; /* Reducir el tamaño de fuente */
-    }
-  
-    .pagination .page-link {
-      padding: 8px 12px; /* Ajustar el padding de los enlaces de la paginación */
-    }
-  }
-  
-  /* Para pantallas pequeñas (smartphones) */
-  @media (max-width: 480px) {
-    .container {
-      padding: 10px; /* Reducir más el padding */
-    }
-  
-    .table {
-      font-size: 12px; /* Reducir el tamaño de fuente de la tabla */
-    }
-  
-    .table th, .table td {
-      padding: 5px; /* Reducir aún más el padding de las celdas */
-    }
-  
-    .table th button {
-      font-size: 14px; /* Reducir el tamaño de fuente de los botones */
-      margin-left: 4px; /* Reducir el margen de los botones */
-    }
-  
-    input[type="text"] {
-      font-size: 12px; /* Reducir aún más el tamaño de fuente */
-      padding: 8px; /* Reducir el padding de los inputs */
-    }
-  
-    .pagination .page-link {
-      padding: 5px 8px; /* Ajustar más el padding de los enlaces de la paginación */
-    }
-  
-    .pagination .page-item {
-      margin: 0 1px; /* Reducir el espacio entre ítems */
-    }
-  }
-  
+}
