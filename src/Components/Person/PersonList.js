@@ -8,7 +8,7 @@ import '../../Styles/Person/PersonList.css';
 function PersonList() {
   const [persons, setPersons] = useState([]);
   const [personNameFilter, setPersonNameFilter] = useState('');
-  const [jobCategoryOrder, setJobCategoryOrder] = useState('asc');
+  const [personIdOrder, setPersonIdOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [personsPerPage] = useState(5);
@@ -234,8 +234,8 @@ function PersonList() {
         persons={persons}
         personNameFilter={personNameFilter}
         searchQuery={searchQuery}
-        jobCategoryOrder={jobCategoryOrder}
-        setJobCategoryOrder={setJobCategoryOrder}
+        personIdOrder={personIdOrder}
+        setPersonIdOrder={setPersonIdOrder}
         currentPage={currentPage}
         personsPerPage={personsPerPage}
         handlePageChange={handlePageChange}

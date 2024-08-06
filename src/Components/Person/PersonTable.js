@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Pagination, Card, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
-const PersonTable = ({ persons, personNameFilter, searchQuery, jobCategoryOrder, setJobCategoryOrder, currentPage, personsPerPage, handlePageChange }) => {
+const PersonTable = ({ persons, personNameFilter, searchQuery, personIdOrder, setPersonIdOrder, currentPage, personsPerPage, handlePageChange }) => {
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [editablePerson, setEditablePerson] = useState({});
   const [jobCategories, setJobCategories] = useState([]);
@@ -27,10 +27,10 @@ const PersonTable = ({ persons, personNameFilter, searchQuery, jobCategoryOrder,
   });
 
   const sortedPersons = filteredPersons.sort((a, b) => {
-    if (jobCategoryOrder === 'asc') {
-      return a.jobCategoryDescription.localeCompare(b.jobCategoryDescription);
+    if (personIdOrder === 'asc') {
+      return a.personId - b.personId;
     } else {
-      return b.jobCategoryDescription.localeCompare(a.jobCategoryDescription);
+      return b.personId - a.personId;
     }
   });
 
@@ -86,7 +86,7 @@ const PersonTable = ({ persons, personNameFilter, searchQuery, jobCategoryOrder,
       window.location.reload();
       clearEditablePerson();
       setSelectedPerson(null);
-      } catch (error) {
+    } catch (error) {
       console.error('Error al actualizar la persona:', error);
       alert('Error al actualizar los datos');
     }
@@ -108,13 +108,13 @@ const PersonTable = ({ persons, personNameFilter, searchQuery, jobCategoryOrder,
       <Table className="table" striped bordered hover>
         <thead>
           <tr>
-          <th>PersonId</th>
             <th>
-              Descripción de Categoría de Trabajo
-              <button onClick={() => setJobCategoryOrder(jobCategoryOrder === 'asc' ? 'desc' : 'asc')}>
-                {jobCategoryOrder === 'asc' ? '↓' : '↑'}
+              PersonId
+              <button onClick={() => setPersonIdOrder(personIdOrder === 'asc' ? 'desc' : 'asc')}>
+                {personIdOrder === 'asc' ? '↓' : '↑'}
               </button>
             </th>
+            <th>Descripción de Categoría de Trabajo</th>
             <th>Nombre</th>
             <th>Email</th>
             <th>Género</th>
@@ -248,7 +248,7 @@ const PersonTable = ({ persons, personNameFilter, searchQuery, jobCategoryOrder,
                     isMarried: !prevState.isMarried
                   }))}
                 />
-              </Form.Group>
+               </Form.Group>
               <><br></br></>
               <Form.Group controlId="formJobCategoryId">
                 <Form.Label>Categoría de Trabajo</Form.Label>
