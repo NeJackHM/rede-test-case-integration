@@ -11,7 +11,7 @@ function PersonList() {
   const [jobCategoryOrder, setJobCategoryOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [personsPerPage] = useState(15);
+  const [personsPerPage] = useState(5);
   const [jobCategories, setJobCategories] = useState([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newPerson, setNewPerson] = useState({
@@ -65,10 +65,25 @@ function PersonList() {
     }));
   };
 
+  const clearNewPerson = () => {
+    setNewPerson({
+      name: '',
+      email: '',
+      gender: '',
+      birthDate: '',
+      telefoneNumber: '',
+      country: '',
+      isFreelance: false,
+      isMarried: false,
+      jobCategoryId: ''
+    });
+  };
+
   const handleCreateSave = async () => {
     try {
       await axios.post('https://localhost:7019/api/v1/Person', newPerson);
       alert('Persona creada correctamente');
+      clearNewPerson();
       setShowCreateForm(false);
       // Opcional: Actualizar la lista de personas sin recargar la página
       const response = await axios.get('https://localhost:7019/api/v1/Person');
@@ -98,7 +113,10 @@ function PersonList() {
         className="mb-3"
       />
   
-      <Button variant="success" onClick={handleCreateClick} className="mb-3">
+      <Button variant="success" onClick={()=>{
+        handleCreateClick();
+        clearNewPerson();
+        }} className="mb-3">
         {showCreateForm ? 'Cancelar' : 'Crear Persona'}
       </Button>
 
@@ -107,8 +125,6 @@ function PersonList() {
           <Card.Body>
             <Card.Title><h4>Crear Nueva Persona</h4></Card.Title>
             <Form>
-              {/* Aquí van los mismos campos del formulario de edición, pero vacíos */}
-              {/* Nombre */}
               <Form.Group controlId="formName">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
@@ -118,7 +134,6 @@ function PersonList() {
                   onChange={handleInputChange}
                 />
               </Form.Group>
-              {/* Email */}
               <Form.Group controlId="formEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -128,17 +143,19 @@ function PersonList() {
                   onChange={handleInputChange}
                 />
               </Form.Group>
-              {/* Género */}
               <Form.Group controlId="formGender">
                 <Form.Label>Género</Form.Label>
                 <Form.Control
-                  type="text"
+                  as="select"
                   name="gender"
                   value={newPerson.gender}
                   onChange={handleInputChange}
-                />
+                >
+                  <option value="">Selecciona...</option>
+                  <option value="M">M</option>
+                  <option value="F">F</option>
+                </Form.Control>
               </Form.Group>
-              {/* Fecha de Nacimiento */}
               <Form.Group controlId="formBirthDate">
                 <Form.Label>Fecha de Nacimiento</Form.Label>
                 <Form.Control
@@ -148,7 +165,6 @@ function PersonList() {
                   onChange={handleInputChange}
                 />
               </Form.Group>
-              {/* Número de Teléfono */}
               <Form.Group controlId="formTelefoneNumber">
                 <Form.Label>Número de Teléfono</Form.Label>
                 <Form.Control
@@ -158,7 +174,6 @@ function PersonList() {
                   onChange={handleInputChange}
                 />
               </Form.Group>
-              {/* País */}
               <Form.Group controlId="formCountry">
                 <Form.Label>País</Form.Label>
                 <Form.Control
@@ -168,7 +183,6 @@ function PersonList() {
                   onChange={handleInputChange}
                 />
               </Form.Group>
-              {/* Freelance */}
               <Form.Group controlId="formIsFreelance">
                 <Form.Check
                   type="checkbox"
@@ -181,7 +195,6 @@ function PersonList() {
                   }))}
                 />
               </Form.Group>
-              {/* Casado */}
               <Form.Group controlId="formIsMarried">
                 <Form.Check
                   type="checkbox"
@@ -195,7 +208,6 @@ function PersonList() {
                 />
               </Form.Group>
               <><br/></>
-              {/* Categoría de Trabajo */}
               <Form.Group controlId="formJobCategoryId">
                 <Form.Label>Categoría de Trabajo</Form.Label>
                 <Form.Control

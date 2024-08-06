@@ -54,6 +54,20 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
     }));
   };
 
+  const clearEditablePerson = () => {
+    setEditablePerson({
+      name: '',
+      email: '',
+      gender: '',
+      birthDate: '',
+      telefoneNumber: '',
+      country: '',
+      isFreelance: false,
+      isMarried: false,
+      jobCategoryId: ''
+    });
+  };
+
   const handleSave = async () => {
     try {
       await axios.put('https://localhost:7019/api/v1/Person', {
@@ -70,7 +84,9 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
       });
       alert('Datos actualizados correctamente');
       window.location.reload();
-    } catch (error) {
+      clearEditablePerson();
+      setSelectedPerson(null);
+      } catch (error) {
       console.error('Error al actualizar la persona:', error);
       alert('Error al actualizar los datos');
     }
@@ -172,11 +188,15 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
               <Form.Group controlId="formGender">
                 <Form.Label>Género</Form.Label>
                 <Form.Control
-                  type="text"
+                  as="select"
                   name="gender"
                   value={editablePerson.gender}
                   onChange={handleInputChange}
-                />
+                >
+                  <option value="">Selecciona...</option>
+                  <option value="M">M</option>
+                  <option value="F">F</option>
+                </Form.Control>
               </Form.Group>
               <Form.Group controlId="formBirthDate">
                 <Form.Label>Fecha de Nacimiento</Form.Label>
@@ -247,8 +267,10 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
               </Form.Group>
               <><center>
               <Button variant="primary" onClick={handleSave} className="mt-3 mx-auto" style={{ width: '200px'}}><h4>Guardar Cambios</h4></Button><> </>
-              <Button variant="secondary" onClick={() => setSelectedPerson(null)} className="mt-3 mx-auto" style={{ width: '200px'}}><h4>Cancelar</h4></Button>
-              </center></>
+              <Button variant="secondary" onClick={() => {
+                    setSelectedPerson(null);
+                    clearEditablePerson();
+              }} className="mt-3 mx-auto" style={{ width: '200px'}}><h4>Cancelar</h4></Button>              </center></>
             </Form>
             <><br></br></>
           </Card.Body>
