@@ -40,7 +40,10 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
 
   const handleEditClick = (person) => {
     setSelectedPerson(person);
-    setEditablePerson({ ...person });
+    setEditablePerson({
+      ...person,
+      birthDate: person.birthDate ? new Date(person.birthDate).toISOString().split('T')[0] : ''
+    });
   };
 
   const handleInputChange = (e) => {
@@ -146,7 +149,7 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
       {selectedPerson && (
         <Card className="mt-4">
           <Card.Body>
-            <Card.Title>Detalles de la Persona</Card.Title>
+            <Card.Title><h4>Detalles de la Persona</h4></Card.Title>
             <Form>
               <Form.Group controlId="formName">
                 <Form.Label>Nombre</Form.Label>
@@ -226,6 +229,7 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
                   }))}
                 />
               </Form.Group>
+              <><br></br></>
               <Form.Group controlId="formJobCategoryId">
                 <Form.Label>Categoría de Trabajo</Form.Label>
                 <Form.Control

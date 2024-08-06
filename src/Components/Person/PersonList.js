@@ -105,7 +105,7 @@ function PersonList() {
       {showCreateForm && (
         <Card className="mt-4">
           <Card.Body>
-            <Card.Title>Crear Nueva Persona</Card.Title>
+            <Card.Title><h4>Crear Nueva Persona</h4></Card.Title>
             <Form>
               {/* Aquí van los mismos campos del formulario de edición, pero vacíos */}
               {/* Nombre */}
@@ -194,6 +194,7 @@ function PersonList() {
                   }))}
                 />
               </Form.Group>
+              <><br/></>
               {/* Categoría de Trabajo */}
               <Form.Group controlId="formJobCategoryId">
                 <Form.Label>Categoría de Trabajo</Form.Label>
@@ -213,6 +214,7 @@ function PersonList() {
               <Button variant="primary" onClick={handleCreateSave} className="mt-3">Guardar</Button>
             </Form>
           </Card.Body>
+          <><br/></>
         </Card>
       )}
 
