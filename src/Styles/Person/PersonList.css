@@ -3,7 +3,7 @@
     padding: 20px;
     border-radius: 8px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    max-width: 900px; /* Ancho máximo para centrar la tabla */
+    max-width: 1200px; /* Ancho máximo para centrar la tabla */
     margin: 0 auto; /* Centramos el contenedor horizontalmente */
   }
   
