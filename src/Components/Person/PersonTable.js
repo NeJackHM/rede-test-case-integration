@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Pagination, Card, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
-const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, setJobCategoryOrder, currentPage, personsPerPage, handlePageChange }) => {
+const PersonTable = ({ persons, personNameFilter, searchQuery, jobCategoryOrder, setJobCategoryOrder, currentPage, personsPerPage, handlePageChange }) => {
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [editablePerson, setEditablePerson] = useState({});
   const [jobCategories, setJobCategories] = useState([]);
@@ -21,9 +21,9 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
   }, []);
 
   const filteredPersons = persons.filter(person => {
-    const matchesPersonId = !personIdFilter || person.personId === parseInt(personIdFilter);
+    const matchesPersonName = person.name.toLowerCase().includes(personNameFilter.toLowerCase());
     const matchesSearchQuery = person.jobCategoryDescription.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesPersonId && matchesSearchQuery;
+    return matchesPersonName && matchesSearchQuery;
   });
 
   const sortedPersons = filteredPersons.sort((a, b) => {
@@ -96,7 +96,7 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
     try {
       await axios.delete('https://localhost:7019/api/v1/Person', { data: { id: personId } });
       alert('Registro eliminado correctamente');
-      window.location.reload(); // Recarga la página para reflejar los cambios
+      window.location.reload();
     } catch (error) {
       console.error('Error al eliminar el registro:', error);
       alert('Error al eliminar el registro');
@@ -108,7 +108,7 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
       <Table className="table" striped bordered hover>
         <thead>
           <tr>
-            <th>PersonId</th>
+          <th>PersonId</th>
             <th>
               Descripción de Categoría de Trabajo
               <button onClick={() => setJobCategoryOrder(jobCategoryOrder === 'asc' ? 'desc' : 'asc')}>

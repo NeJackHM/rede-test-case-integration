@@ -1,0 +1,29 @@
+# Paso 1: Construir la aplicación
+FROM node:18 AS build
+
+# Configurar el directorio de trabajo
+WORKDIR /app
+
+# Copiar package.json y package-lock.json
+COPY package*.json ./
+
+# Instalar las dependencias
+RUN npm install
+
+# Copiar el resto del código fuente
+COPY . .
+
+# Construir la aplicación React
+RUN npm run build
+
+# Paso 2: Configurar el contenedor para servir la aplicación
+FROM nginx:alpine
+
+# Copiar los archivos construidos desde el paso anterior
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Exponer el puerto 80
+EXPOSE 80
+
+# Comando por defecto para ejecutar nginx
+CMD ["nginx", "-g", "daemon off;"]

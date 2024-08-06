@@ -7,7 +7,7 @@ import '../../Styles/Person/PersonList.css';
 
 function PersonList() {
   const [persons, setPersons] = useState([]);
-  const [personIdFilter, setPersonIdFilter] = useState('');
+  const [personNameFilter, setPersonNameFilter] = useState('');
   const [jobCategoryOrder, setJobCategoryOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -100,9 +100,9 @@ function PersonList() {
 
       <Form.Control
         type="text"
-        placeholder="Buscar por PersonId"
-        value={personIdFilter}
-        onChange={(e) => setPersonIdFilter(e.target.value)}
+        placeholder="Buscar por Nombre"
+        value={personNameFilter}
+        onChange={(e) => setPersonNameFilter(e.target.value)}
         className="mb-3"
       />
       <Form.Control
@@ -232,7 +232,7 @@ function PersonList() {
 
       <PersonTable
         persons={persons}
-        personIdFilter={personIdFilter}
+        personNameFilter={personNameFilter}
         searchQuery={searchQuery}
         jobCategoryOrder={jobCategoryOrder}
         setJobCategoryOrder={setJobCategoryOrder}
