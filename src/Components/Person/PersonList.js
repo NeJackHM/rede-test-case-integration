@@ -81,7 +81,7 @@ function PersonList() {
 
   return (
     <Container className="container">
-      <h3 className="mt-4">Personas</h3>
+      <h2 className="mt-4">Personas</h2>
 
       <Form.Control
         type="text"
@@ -211,7 +211,7 @@ function PersonList() {
                   ))}
                 </Form.Control>
               </Form.Group>
-              <Button variant="primary" onClick={handleCreateSave} className="mt-3">Guardar</Button>
+              <center><Button variant="primary" onClick={handleCreateSave} className="mt-3" style={{ width: '200px'}}><h4>Guardar</h4></Button></center>     
             </Form>
           </Card.Body>
           <><br/></>

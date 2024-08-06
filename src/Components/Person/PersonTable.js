@@ -245,9 +245,12 @@ const PersonTable = ({ persons, personIdFilter, searchQuery, jobCategoryOrder, s
                   ))}
                 </Form.Control>
               </Form.Group>
-              <Button variant="primary" onClick={handleSave} className="mt-3 mx-auto">Guardar Cambios</Button>
-              <Button variant="secondary" onClick={() => setSelectedPerson(null)} className="mt-3 mx-auto">Cancelar</Button>
+              <><center>
+              <Button variant="primary" onClick={handleSave} className="mt-3 mx-auto" style={{ width: '200px'}}><h4>Guardar Cambios</h4></Button><> </>
+              <Button variant="secondary" onClick={() => setSelectedPerson(null)} className="mt-3 mx-auto" style={{ width: '200px'}}><h4>Cancelar</h4></Button>
+              </center></>
             </Form>
+            <><br></br></>
           </Card.Body>
         </Card>
       )}
